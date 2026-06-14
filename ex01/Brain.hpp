@@ -1,17 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nyrakoto <nyrakoto@student.42antananarivo  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/15 01:13:00 by nyrakoto          #+#    #+#             */
+/*   Updated: 2026/06/15 01:13:00 by nyrakoto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BRAIN_HPP
-#define BRAIN_HPP
+# define BRAIN_HPP
 
-#include <string>
+# include <iostream>
+# include <string>
 
-class Brain {
-private:
-    std::string _ideas[100];
+class Brain
+{
+	private:
+		std::string _ideas[100];
 
-public:
-    Brain();
-    ~Brain();
-    Brain(const Brain& other);
-    Brain& operator=(const Brain& other);
-    void setIdea(int index, const std::string& idea);
-    std::string getIdea(int index) const;
+	public:
+		Brain();
+		Brain(const Brain& other);
+		Brain& operator=(const Brain& other);
+		~Brain();
+
+		void setIdea(int index, const std::string& idea);
+		std::string getIdea(int index) const;
 };
+
+#endif

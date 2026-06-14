@@ -1,25 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nyrakoto <nyrakoto@student.42antananarivo  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/15 01:13:00 by nyrakoto          #+#    #+#             */
+/*   Updated: 2026/06/15 01:13:00 by nyrakoto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Dog.hpp"
 
-Dog::Dog(const std::string& name) : Animal(name) {
-    std::cout << "Dog created: " << _name << std::endl;
+Dog::Dog()
+{
+	_type = "Dog";
+	std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::~Dog() {
-    std::cout << "Dog destroyed: " << _name << std::endl;
+Dog::Dog(const Dog& other) : Animal(other)
+{
+	std::cout << "Dog copy constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other) : Animal(other) {
-    std::cout << "Dog copied: " << _name << std::endl;
+Dog& Dog::operator=(const Dog& other)
+{
+	std::cout << "Dog copy assignment operator called" << std::endl;
+	if (this != &other)
+		Animal::operator=(other);
+	return *this;
 }
 
-Dog& Dog::operator=(const Dog& other) {
-    if (this != &other) {
-        Animal::operator=(other);
-    }
-    std::cout << "Dog assigned: " << _name << std::endl;
-    return *this;
+Dog::~Dog()
+{
+	std::cout << "Dog destructor called" << std::endl;
 }
 
-void Dog::makeSound() const {
-    std::cout << _name << " Woof Woof!" << std::endl;
+void Dog::makeSound() const
+{
+	std::cout << "Woof! Woof!" << std::endl;
 }

@@ -1,26 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nyrakoto <nyrakoto@student.42antananarivo  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/15 01:13:00 by nyrakoto          #+#    #+#             */
+/*   Updated: 2026/06/15 01:13:00 by nyrakoto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cat.hpp"
 
-Cat::Cat(const std::string& name) : AAnimal() {
-    _name = name;
-    std::cout << "Cat created: " << _name << std::endl;
+Cat::Cat() : _brain(new Brain())
+{
+	_type = "Cat";
+	std::cout << "Cat default constructor called" << std::endl;
 }
 
-Cat::~Cat() {
-    std::cout << "Cat destroyed: " << _name << std::endl;
+Cat::Cat(const Cat& other) : AAnimal(other), _brain(new Brain(*other._brain))
+{
+	std::cout << "Cat copy constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : AAnimal(other) {
-    std::cout << "Cat copied: " << _name << std::endl;
+Cat& Cat::operator=(const Cat& other)
+{
+	std::cout << "Cat copy assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		AAnimal::operator=(other);
+		*_brain = *other._brain;
+	}
+	return *this;
 }
 
-Cat& Cat::operator=(const Cat& other) {
-    if (this != &other) {
-        AAnimal::operator=(other);
-    }
-    std::cout << "Cat assigned: " << _name << std::endl;
-    return *this;
+Cat::~Cat()
+{
+	delete _brain;
+	std::cout << "Cat destructor called" << std::endl;
 }
 
-void Cat::makeSound() const {
-    std::cout << _name << " Meow Meow!" << std::endl;
+void Cat::makeSound() const
+{
+	std::cout << "Meow! Meow!" << std::endl;
+}
+
+Brain* Cat::getBrain() const
+{
+	return _brain;
 }
