@@ -18,11 +18,6 @@
 
 int main()
 {
-	// Uncommenting the following line should cause a compilation error:
-	// AAnimal test;      // ERROR: cannot instantiate abstract class
-	// AAnimal* test2 = new AAnimal(); // ERROR: same reason
-
-	std::cout << "========== Subject test ==========" << std::endl;
 	{
 		const AAnimal* j = new Dog();
 		const AAnimal* i = new Cat();
@@ -34,10 +29,9 @@ int main()
 		std::cout << std::endl;
 		delete j;
 		delete i;
+		std::cout << std::endl;
 	}
 
-	std::cout << std::endl;
-	std::cout << "========== Array of Animals ==========" << std::endl;
 	{
 		AAnimal* animals[ARRAY_SIZE];
 		for (int i = 0; i < ARRAY_SIZE; i++)
@@ -47,19 +41,18 @@ int main()
 			else
 				animals[i] = new Cat();
 		}
-		std::cout << std::endl << "--- Sounds ---" << std::endl;
+		std::cout << std::endl;
 		for (int i = 0; i < ARRAY_SIZE; i++)
 		{
 			std::cout << animals[i]->getType() << ": ";
 			animals[i]->makeSound();
 		}
-		std::cout << std::endl << "--- Deleting ---" << std::endl;
+		std::cout << std::endl;
 		for (int i = 0; i < ARRAY_SIZE; i++)
 			delete animals[i];
+		std::cout << std::endl;
 	}
 
-	std::cout << std::endl;
-	std::cout << "========== Deep copy test ==========" << std::endl;
 	{
 		Dog original;
 		original.getBrain()->setIdea(0, "Chase the ball");
@@ -69,9 +62,7 @@ int main()
 		std::cout << std::endl;
 		std::cout << "Original: " << original.getBrain()->getIdea(0) << std::endl;
 		std::cout << "Copy: " << copy.getBrain()->getIdea(0) << std::endl;
-		std::cout << "Brains differ: "
-			<< (original.getBrain() != copy.getBrain() ? "YES" : "NO")
-			<< std::endl;
+		std::cout << "Brains differ: " << (original.getBrain() != copy.getBrain() ? "YES" : "NO") << std::endl;
 		std::cout << std::endl;
 	}
 
